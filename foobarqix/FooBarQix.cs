@@ -8,7 +8,19 @@ public class FooBarQix
     public const string Bar = "Bar";
     public const string Qix = "Qix";
 
-    public static string Display(int input)
+    private readonly Dictionary<int, string> _fooBarQixDictionary;
+
+    public FooBarQix()
+    {
+        _fooBarQixDictionary = new()
+        {
+            { 3, "Foo" },
+            { 5, "Bar" },
+            { 7, "Qix" }
+        };      
+    }
+
+    public string Display(int input)
     {
         StringBuilder sb = new ();
         
@@ -20,15 +32,10 @@ public class FooBarQix
             sb.Append(Qix);
 
         var inputString = input.ToString();
-        for (int i = 0; i < inputString.Length; i++)
+        foreach (char item in inputString)
         {
-            _ = inputString[i] switch
-            {
-                '3' => sb.Append(Foo),
-                '5' => sb.Append(Bar),
-                '7' => sb.Append(Qix),
-                _ => default,
-            };
+            if (_fooBarQixDictionary.ContainsKey(int.Parse(item.ToString())))
+                sb.Append(_fooBarQixDictionary[int.Parse(item.ToString())]);
         }        
         
         var result = sb.ToString();

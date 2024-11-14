@@ -4,12 +4,13 @@ namespace foobarqix.tests;
 
 public class FooBarQixTests
 {
+    private readonly FooBarQix _sut = new();
     // 1 renvoi 1
     [Theory]
     [MemberData(nameof(Data))]
     public void GivenOneReturnsOne(int input, string output)
     {
-        var actual = FooBarQix.Display(input);
+        var actual = _sut.Display(input);
 
         actual.Should().Be(output);
     }
