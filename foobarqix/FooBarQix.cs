@@ -8,7 +8,7 @@ public class FooBarQix
     public const string Bar = "Bar";
     public const string Qix = "Qix";
 
-    public static object Display(int input)
+    public static string Display(int input)
     {
         StringBuilder sb = new ();
         
