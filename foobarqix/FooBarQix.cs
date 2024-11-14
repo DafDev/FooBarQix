@@ -23,22 +23,21 @@ public class FooBarQix
     public string Display(int input)
     {
         StringBuilder sb = new ();
-        
-        if (input % 3 == 0)
-            sb.Append(Foo);
-        if (input % 5 == 0)
-            sb.Append(Bar);
-        if (input % 7 == 0)
-            sb.Append(Qix);
+        foreach (var key in _fooBarQixDictionary.Keys)
+        {
+            if (input % key == 0)
+                sb.Append(_fooBarQixDictionary[key]);
+        }
 
         var inputString = input.ToString();
-        foreach (char item in inputString)
+        foreach (var item in inputString)
         {
-            if (_fooBarQixDictionary.ContainsKey(int.Parse(item.ToString())))
-                sb.Append(_fooBarQixDictionary[int.Parse(item.ToString())]);
+            if (_fooBarQixDictionary.TryGetValue(int.Parse(item.ToString()), out string? value))
+                sb.Append(value);
         }        
         
         var result = sb.ToString();
-        return !string.IsNullOrWhiteSpace(result) ? result : input.ToString();
+        return !string.IsNullOrWhiteSpace(result) ? result : inputString;
     }
+
 }
